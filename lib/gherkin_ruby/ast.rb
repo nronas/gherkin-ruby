@@ -14,15 +14,15 @@ module GherkinRuby
     end
 
     class Describe < Node
-      attr_reader :name, :group_rule, :rules, :tags
-      attr_writer :group_rule, :rules, :tags
+      attr_reader :name, :group_rules, :rules, :tags
+      attr_writer :group_rules, :rules, :tags
       attr_accessor :description
 
       include Enumerable
 
       def initialize(name, rules=[], tags=[], group_rule=nil)
         @name       = name
-        @group_rule = group_rule
+        @group_rules = group_rules
         @tags       = tags
         @rules  = rules
       end
@@ -33,13 +33,13 @@ module GherkinRuby
     end
 
     class GroupRule < Node
-      attr_reader :steps
-      attr_writer :steps
+      attr_accessor :steps, :members
 
       include Enumerable
 
-      def initialize(steps=[])
-        @steps = steps
+      def initialize
+        @steps   = []
+        @members = []
       end
 
       def line

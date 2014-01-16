@@ -16,7 +16,7 @@ rule
   # Keywords
   Describe:                             { [:DESCRIBE, text[0..-2]] }
   GroupRule:                            { [:GROUPRULE, text[0..-2]] }
-  Rule:                                 { [:RULE, text[0..-2]] }
+  Define:                               { [:RULE, text[0..-2]] }
 
   # Tags
   @(\w|-)+                              { [:TAG, text[1..-1]] }

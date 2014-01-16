@@ -12,7 +12,7 @@ require 'racc/parser.rb'
 module GherkinRuby
   class Parser < Racc::Parser
 
-module_eval(<<'...end gherkin.y/module_eval...', 'gherkin.y', 104)
+module_eval(<<'...end gherkin.y/module_eval...', 'gherkin.y', 93)
 
   def parse(input)
     @yydebug = true if ENV['DEBUG_RACC']
@@ -22,106 +22,90 @@ module_eval(<<'...end gherkin.y/module_eval...', 'gherkin.y', 104)
 ##### State transition tables begin ###
 
 racc_action_table = [
-    18,    36,    37,    38,    39,    40,    41,    18,    14,    10,
-    26,    44,    36,    37,    38,    39,    40,    41,    18,    18,
-    14,    10,    46,    36,    37,    38,    39,    40,    41,    18,
-    14,    10,     4,     9,    36,    37,    38,    39,    40,    41,
-     4,    18,    20,    32,    21,    10,     4,     9,    14,    10,
-    10,    18,    20,    24,    21,     4,     4,    29,    21,     4,
-    48,    18,    49,     4,    27,    52,    11,     4,    18,     4,
-    18,     4 ]
+    16,    26,    27,    28,    29,    30,    31,    16,     3,     7,
+    39,    36,    26,    27,    28,    29,    30,    31,    16,    16,
+    17,    13,    15,    26,    27,    28,    29,    30,    31,    13,
+    19,     3,    33,    34,     3,    15,     3,    15,    16,     3,
+    41,     3,    15,    20,     8,     3,    16,    16 ]
 
 racc_action_check = [
-    25,    23,    23,    23,    23,    23,    23,    55,    31,    31,
-     9,    25,    55,    55,    55,    55,    55,    55,    45,    30,
-    12,    12,    30,    45,    45,    45,    45,    45,    45,    47,
-     2,     2,     3,     3,    47,    47,    47,    47,    47,    47,
-    15,     5,     5,    20,    15,     5,     0,     0,    16,    16,
-     0,    17,    17,     7,     6,     8,    29,    14,    19,    34,
-    35,    42,    43,    44,    11,    46,     1,    49,    50,    52,
-    54,    24 ]
+    18,    12,    12,    12,    12,    12,    12,    40,     0,     0,
+    25,    18,    40,    40,    40,    40,    40,    40,    38,     4,
+     4,     2,     2,    38,    38,    38,    38,    38,    38,    10,
+     7,    13,    15,    17,     6,    23,    24,     9,    32,    33,
+    35,    36,    37,     8,     1,    41,    42,    45 ]
 
 racc_action_pointer = [
-    44,    66,    25,    30,   nil,    39,    48,    49,    53,    -3,
-   nil,    64,    15,   nil,    44,    38,    43,    49,   nil,    52,
-    30,   nil,   nil,    -6,    69,    -2,   nil,   nil,   nil,    54,
-    17,     3,   nil,   nil,    57,    47,   nil,   nil,   nil,   nil,
-   nil,   nil,    59,    49,    61,    16,    52,    27,   nil,    65,
-    66,   nil,    67,   nil,    68,     5,   nil ]
+     6,    44,    17,   nil,    17,   nil,    32,    17,    43,    32,
+    25,   nil,    -6,    29,   nil,    19,   nil,    20,    -2,   nil,
+   nil,   nil,   nil,    30,    34,    -3,   nil,   nil,   nil,   nil,
+   nil,   nil,    36,    37,   nil,    27,    39,    37,    16,   nil,
+     5,    43,    44,   nil,   nil,    45 ]
 
 racc_action_default = [
-   -36,   -36,    -1,   -36,    -5,   -36,    -7,    -9,   -11,   -36,
-   -34,   -36,    -2,   -30,   -36,   -36,    -3,   -36,    -6,    -8,
-   -36,   -35,   -10,   -36,   -36,   -12,   -14,    57,   -31,   -36,
-   -36,    -4,   -15,   -18,   -20,   -36,   -24,   -25,   -26,   -27,
-   -28,   -29,   -19,   -13,   -36,   -36,   -36,   -21,   -23,   -36,
-   -16,   -32,   -36,   -22,   -17,   -36,   -33 ]
+   -30,   -30,   -30,    -3,   -30,    -5,    -6,   -30,   -30,    -1,
+    -2,   -13,   -30,   -30,   -27,   -30,    -4,   -30,    -7,    -9,
+    46,   -28,   -14,   -30,   -17,   -30,   -21,   -22,   -23,   -24,
+   -25,   -26,   -16,   -30,   -10,    -8,   -30,   -15,   -18,   -20,
+   -30,   -30,   -11,   -19,   -29,   -12 ]
 
 racc_goto_table = [
-     5,    33,    28,    17,    12,     6,     2,    23,    25,    16,
-    19,    43,    22,     3,     1,    30,   nil,   nil,    31,   nil,
-   nil,    28,   nil,    51,    42,    53,   nil,   nil,   nil,    45,
-   nil,   nil,   nil,    56,    47,   nil,   nil,   nil,   nil,   nil,
-   nil,   nil,   nil,   nil,    50,   nil,   nil,   nil,   nil,    54,
-   nil,   nil,    55 ]
+     4,    23,    21,    11,     9,     5,    18,     6,    35,    10,
+     2,    22,     1,    32,   nil,   nil,   nil,   nil,   nil,   nil,
+   nil,   nil,   nil,   nil,    38,    37,   nil,    43,   nil,    44,
+    21,   nil,   nil,    40,   nil,   nil,    42,   nil,   nil,   nil,
+   nil,    45 ]
 
 racc_goto_check = [
-     5,    12,    15,     5,     3,     6,     2,    11,     5,     2,
-     6,    10,     8,     4,     1,     5,   nil,   nil,     3,   nil,
-   nil,    15,   nil,    12,     5,    12,   nil,   nil,   nil,     5,
-   nil,   nil,   nil,    12,     5,   nil,   nil,   nil,   nil,   nil,
-   nil,   nil,   nil,   nil,     5,   nil,   nil,   nil,   nil,     5,
-   nil,   nil,     5 ]
+     5,    11,    14,     9,     3,     6,     5,     7,     8,     4,
+     2,     9,     1,     5,   nil,   nil,   nil,   nil,   nil,   nil,
+   nil,   nil,   nil,   nil,     5,     3,   nil,    11,   nil,    11,
+    14,   nil,   nil,     5,   nil,   nil,     5,   nil,   nil,   nil,
+   nil,     5 ]
 
 racc_goto_pointer = [
-   nil,    14,     6,     2,    13,     0,     5,   nil,     5,   nil,
-   -14,     0,   -22,   nil,   nil,   -10 ]
+   nil,    12,    10,     2,     7,     0,     5,     7,   -10,     1,
+   nil,   -11,   nil,   nil,    -7 ]
 
 racc_goto_default = [
-   nil,   nil,   nil,   nil,   nil,   nil,    15,     7,   nil,     8,
-   nil,   nil,   nil,    34,    35,    13 ]
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
+    12,   nil,    24,    25,    14 ]
 
 racc_reduce_table = [
   0, 0, :racc_error,
-  1, 15, :_reduce_1,
+  2, 15, :_reduce_1,
   2, 15, :_reduce_2,
-  2, 15, :_reduce_3,
-  3, 15, :_reduce_4,
   1, 19, :_reduce_none,
   2, 19, :_reduce_none,
-  1, 18, :_reduce_7,
-  2, 18, :_reduce_8,
-  1, 16, :_reduce_9,
-  2, 16, :_reduce_10,
-  1, 21, :_reduce_11,
-  2, 21, :_reduce_12,
-  3, 21, :_reduce_13,
-  2, 23, :_reduce_14,
+  1, 16, :_reduce_5,
+  1, 20, :_reduce_6,
+  2, 20, :_reduce_7,
+  3, 20, :_reduce_8,
+  2, 21, :_reduce_9,
+  3, 21, :_reduce_10,
+  2, 22, :_reduce_11,
+  3, 22, :_reduce_12,
+  1, 18, :_reduce_13,
+  2, 18, :_reduce_14,
   3, 23, :_reduce_15,
   2, 24, :_reduce_16,
-  3, 24, :_reduce_17,
-  2, 22, :_reduce_18,
-  2, 25, :_reduce_19,
-  1, 26, :_reduce_20,
-  2, 26, :_reduce_21,
-  3, 26, :_reduce_22,
-  2, 27, :_reduce_23,
-  1, 28, :_reduce_none,
-  1, 28, :_reduce_none,
-  1, 28, :_reduce_none,
-  1, 28, :_reduce_none,
-  1, 28, :_reduce_none,
-  1, 28, :_reduce_none,
-  1, 17, :_reduce_30,
-  2, 17, :_reduce_31,
-  4, 29, :_reduce_32,
-  6, 29, :_reduce_33,
-  1, 20, :_reduce_34,
-  2, 20, :_reduce_35 ]
+  1, 25, :_reduce_17,
+  2, 25, :_reduce_18,
+  3, 25, :_reduce_19,
+  2, 26, :_reduce_20,
+  1, 27, :_reduce_none,
+  1, 27, :_reduce_none,
+  1, 27, :_reduce_none,
+  1, 27, :_reduce_none,
+  1, 27, :_reduce_none,
+  1, 27, :_reduce_none,
+  1, 17, :_reduce_27,
+  2, 17, :_reduce_28,
+  4, 28, :_reduce_29 ]
 
-racc_reduce_n = 36
+racc_reduce_n = 30
 
-racc_shift_n = 57
+racc_shift_n = 46
 
 racc_token_table = {
   false => 0,
@@ -178,13 +162,12 @@ Racc_token_to_s_table = [
   "Root",
   "Describe",
   "Rules",
-  "DescribeTags",
+  "GroupRules",
   "Newline",
-  "Tags",
   "DescribeHeader",
-  "GroupRule",
   "DescribeName",
   "Description",
+  "GroupRule",
   "GroupRuleHeader",
   "Steps",
   "Step",
@@ -197,156 +180,141 @@ Racc_debug_parser = false
 
 # reduce 0 omitted
 
-module_eval(<<'.,.,', 'gherkin.y', 14)
+module_eval(<<'.,.,', 'gherkin.y', 15)
   def _reduce_1(val, _values, result)
-     result = val[0]; 
+     result = val[0]; result.rules = val[1].flatten 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'gherkin.y', 17)
   def _reduce_2(val, _values, result)
-     result = val[0]; result.rules = val[1] 
+     result = val[0]; result.group_rules << val[1].flatten 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'gherkin.y', 18)
-  def _reduce_3(val, _values, result)
-     result = val[1]; result.tags = val[0] 
-    result
-  end
-.,.,
+# reduce 3 omitted
 
-module_eval(<<'.,.,', 'gherkin.y', 20)
-  def _reduce_4(val, _values, result)
-     result = val[1]; result.rules = val[2]; result.tags = val[0] 
-    result
-  end
-.,.,
+# reduce 4 omitted
 
-# reduce 5 omitted
-
-# reduce 6 omitted
-
-module_eval(<<'.,.,', 'gherkin.y', 29)
-  def _reduce_7(val, _values, result)
+module_eval(<<'.,.,', 'gherkin.y', 26)
+  def _reduce_5(val, _values, result)
      result = val[0] 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'gherkin.y', 30)
-  def _reduce_8(val, _values, result)
-     result = val[1] 
-    result
-  end
-.,.,
-
-module_eval(<<'.,.,', 'gherkin.y', 33)
-  def _reduce_9(val, _values, result)
+  def _reduce_6(val, _values, result)
      result = val[0] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'gherkin.y', 35)
-  def _reduce_10(val, _values, result)
-     result = val[0]; result.group_rule = val[1] 
+module_eval(<<'.,.,', 'gherkin.y', 31)
+  def _reduce_7(val, _values, result)
+     result = val[0] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'gherkin.y', 39)
+module_eval(<<'.,.,', 'gherkin.y', 33)
+  def _reduce_8(val, _values, result)
+     result = val[0]; result.description = val[2] 
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'gherkin.y', 37)
+  def _reduce_9(val, _values, result)
+     result = AST::Describe.new(val[1]); result.pos(filename, lineno) 
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'gherkin.y', 38)
+  def _reduce_10(val, _values, result)
+     result = AST::Describe.new(val[2]); result.pos(filename, lineno) 
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'gherkin.y', 42)
   def _reduce_11(val, _values, result)
      result = val[0] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'gherkin.y', 40)
+module_eval(<<'.,.,', 'gherkin.y', 43)
   def _reduce_12(val, _values, result)
-     result = val[0] 
-    result
-  end
-.,.,
-
-module_eval(<<'.,.,', 'gherkin.y', 42)
-  def _reduce_13(val, _values, result)
-     result = val[0]; result.description = val[2] 
-    result
-  end
-.,.,
-
-module_eval(<<'.,.,', 'gherkin.y', 46)
-  def _reduce_14(val, _values, result)
-     result = AST::Describe.new(val[1]); result.pos(filename, lineno) 
-    result
-  end
-.,.,
-
-module_eval(<<'.,.,', 'gherkin.y', 47)
-  def _reduce_15(val, _values, result)
-     result = AST::Describe.new(val[2]); result.pos(filename, lineno) 
-    result
-  end
-.,.,
-
-module_eval(<<'.,.,', 'gherkin.y', 51)
-  def _reduce_16(val, _values, result)
-     result = val[0] 
-    result
-  end
-.,.,
-
-module_eval(<<'.,.,', 'gherkin.y', 52)
-  def _reduce_17(val, _values, result)
      result = val[0...-1].flatten 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'gherkin.y', 57)
-  def _reduce_18(val, _values, result)
-     result = val[0]; result.steps = val[1] 
+module_eval(<<'.,.,', 'gherkin.y', 47)
+  def _reduce_13(val, _values, result)
+     result = [val[0]] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'gherkin.y', 61)
-  def _reduce_19(val, _values, result)
+module_eval(<<'.,.,', 'gherkin.y', 48)
+  def _reduce_14(val, _values, result)
+     result = val[0].members << val[1].flatten 
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'gherkin.y', 54)
+  def _reduce_15(val, _values, result)
+     result = val[0]; result.steps << val[1].flatten; result.members << val[2].flatten 
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'gherkin.y', 58)
+  def _reduce_16(val, _values, result)
      result = AST::GroupRule.new; result.pos(filename, lineno) 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'gherkin.y', 65)
+module_eval(<<'.,.,', 'gherkin.y', 62)
+  def _reduce_17(val, _values, result)
+     result = [val[0]] 
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'gherkin.y', 63)
+  def _reduce_18(val, _values, result)
+     result = [val[0]] 
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'gherkin.y', 64)
+  def _reduce_19(val, _values, result)
+     val[2].unshift(val[0]); result = val[2].flatten 
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'gherkin.y', 68)
   def _reduce_20(val, _values, result)
-     result = [val[0]] 
-    result
-  end
-.,.,
-
-module_eval(<<'.,.,', 'gherkin.y', 66)
-  def _reduce_21(val, _values, result)
-     result = [val[0]] 
-    result
-  end
-.,.,
-
-module_eval(<<'.,.,', 'gherkin.y', 67)
-  def _reduce_22(val, _values, result)
-     val[2].unshift(val[0]); result = val[2] 
-    result
-  end
-.,.,
-
-module_eval(<<'.,.,', 'gherkin.y', 71)
-  def _reduce_23(val, _values, result)
      result = AST::Step.new(val[1], val[0]); result.pos(filename, lineno) 
     result
   end
 .,.,
+
+# reduce 21 omitted
+
+# reduce 22 omitted
+
+# reduce 23 omitted
 
 # reduce 24 omitted
 
@@ -354,50 +322,23 @@ module_eval(<<'.,.,', 'gherkin.y', 71)
 
 # reduce 26 omitted
 
-# reduce 27 omitted
-
-# reduce 28 omitted
-
-# reduce 29 omitted
-
-module_eval(<<'.,.,', 'gherkin.y', 79)
-  def _reduce_30(val, _values, result)
+module_eval(<<'.,.,', 'gherkin.y', 76)
+  def _reduce_27(val, _values, result)
      result = [val[0]] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'gherkin.y', 80)
-  def _reduce_31(val, _values, result)
+module_eval(<<'.,.,', 'gherkin.y', 77)
+  def _reduce_28(val, _values, result)
      result = val[0] << val[1] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'gherkin.y', 85)
-  def _reduce_32(val, _values, result)
+module_eval(<<'.,.,', 'gherkin.y', 82)
+  def _reduce_29(val, _values, result)
      result = AST::Rule.new(val[1], val[3]); result.pos(filename, lineno - 1) 
-    result
-  end
-.,.,
-
-module_eval(<<'.,.,', 'gherkin.y', 88)
-  def _reduce_33(val, _values, result)
-     result = AST::Rule.new(val[3], val[5], val[0]); result.pos(filename, lineno - 2) 
-    result
-  end
-.,.,
-
-module_eval(<<'.,.,', 'gherkin.y', 92)
-  def _reduce_34(val, _values, result)
-     result = [AST::Tag.new(val[0])] 
-    result
-  end
-.,.,
-
-module_eval(<<'.,.,', 'gherkin.y', 93)
-  def _reduce_35(val, _values, result)
-     result = val[0] << AST::Tag.new(val[1]) 
     result
   end
 .,.,

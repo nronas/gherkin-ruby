@@ -12,13 +12,10 @@ token TEXT
 rule
 
   Root:
-    Describe     { result = val[0]; }
-  |
     Describe
-      Rules { result = val[0]; result.rules = val[1] }
-  | DescribeTags Describe { result = val[1]; result.tags = val[0] }
-  | DescribeTags Describe
-      Rules { result = val[1]; result.rules = val[2]; result.tags = val[0] }
+      Rules { result = val[0]; result.rules = val[1].flatten }
+  | Describe
+      GroupRules { result = val[0]; result.group_rules << val[1].flatten }
   ;
 
   Newline:
@@ -26,14 +23,8 @@ rule
   | Newline NEWLINE
   ;
 
-  DescribeTags:
-    Tags { result = val[0] }
-  | Newline Tags { result = val[1] }
-
   Describe:
     DescribeHeader { result = val[0] }
-  | DescribeHeader
-      GroupRule  { result = val[0]; result.group_rule = val[1] }
   ;
 
   DescribeHeader:
@@ -53,9 +44,15 @@ rule
   | Description TEXT Newline { result = val[0...-1].flatten }
   ;
 
+  GroupRules:
+    GroupRule               { result = [val[0]] }
+  | GroupRules GroupRule    { result = val[0].members << val[1].flatten }
+  ;
+
   GroupRule:
     GroupRuleHeader
-      Steps               { result = val[0]; result.steps = val[1] }
+      Steps
+        Rules { result = val[0]; result.steps << val[1].flatten; result.members << val[2].flatten }
   ;
 
   GroupRuleHeader:
@@ -65,7 +62,7 @@ rule
   Steps:
     Step                  { result = [val[0]] }
   | Step Newline          { result = [val[0]] }
-  | Step Newline Steps    { val[2].unshift(val[0]); result = val[2] }
+  | Step Newline Steps    { val[2].unshift(val[0]); result = val[2].flatten }
   ;
 
   Step:
@@ -84,14 +81,6 @@ rule
   Rule:
     RULE TEXT Newline
       Steps { result = AST::Rule.new(val[1], val[3]); result.pos(filename, lineno - 1) }
-  | Tags Newline
-    RULE TEXT Newline
-      Steps { result = AST::Rule.new(val[3], val[5], val[0]); result.pos(filename, lineno - 2) }
-  ;
-
-  Tags:
-    TAG         { result = [AST::Tag.new(val[0])] }
-  | Tags TAG    { result = val[0] << AST::Tag.new(val[1]) }
   ;
 
 end

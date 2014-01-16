@@ -74,7 +74,7 @@ class GherkinRuby::Parser < Racc::Parser
       when (text = @ss.scan(/GroupRule:/))
          action { [:GROUPRULE, text[0..-2]] }
 
-      when (text = @ss.scan(/Rule:/))
+      when (text = @ss.scan(/Define:/))
          action { [:RULE, text[0..-2]] }
 
       when (text = @ss.scan(/@(\w|-)+/))
