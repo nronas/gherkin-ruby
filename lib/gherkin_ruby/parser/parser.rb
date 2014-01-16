@@ -127,9 +127,9 @@ racc_token_table = {
   false => 0,
   :error => 1,
   :NEWLINE => 2,
-  :FEATURE => 3,
-  :BACKGROUND => 4,
-  :SCENARIO => 5,
+  :DESCRIBE => 3,
+  :GROUPRULE => 4,
+  :RULE => 5,
   :TAG => 6,
   :GIVEN => 7,
   :WHEN => 8,
@@ -163,9 +163,9 @@ Racc_token_to_s_table = [
   "$end",
   "error",
   "NEWLINE",
-  "FEATURE",
-  "BACKGROUND",
-  "SCENARIO",
+  "DESCRIBE",
+  "GROUPRULE",
+  "RULE",
   "TAG",
   "GIVEN",
   "WHEN",
@@ -176,20 +176,20 @@ Racc_token_to_s_table = [
   "TEXT",
   "$start",
   "Root",
-  "Feature",
-  "Scenarios",
-  "FeatureTags",
+  "Describe",
+  "Rules",
+  "DescribeTags",
   "Newline",
   "Tags",
-  "FeatureHeader",
-  "Background",
-  "FeatureName",
+  "DescribeHeader",
+  "GroupRule",
+  "DescribeName",
   "Description",
-  "BackgroundHeader",
+  "GroupRuleHeader",
   "Steps",
   "Step",
   "Keyword",
-  "Scenario" ]
+  "Rule" ]
 
 Racc_debug_parser = false
 
@@ -206,7 +206,7 @@ module_eval(<<'.,.,', 'gherkin.y', 14)
 
 module_eval(<<'.,.,', 'gherkin.y', 17)
   def _reduce_2(val, _values, result)
-     result = val[0]; result.scenarios = val[1] 
+     result = val[0]; result.rules = val[1] 
     result
   end
 .,.,
@@ -220,7 +220,7 @@ module_eval(<<'.,.,', 'gherkin.y', 18)
 
 module_eval(<<'.,.,', 'gherkin.y', 20)
   def _reduce_4(val, _values, result)
-     result = val[1]; result.scenarios = val[2]; result.tags = val[0] 
+     result = val[1]; result.rules = val[2]; result.tags = val[0] 
     result
   end
 .,.,
@@ -252,7 +252,7 @@ module_eval(<<'.,.,', 'gherkin.y', 33)
 
 module_eval(<<'.,.,', 'gherkin.y', 35)
   def _reduce_10(val, _values, result)
-     result = val[0]; result.background = val[1] 
+     result = val[0]; result.group_rule = val[1] 
     result
   end
 .,.,
@@ -280,14 +280,14 @@ module_eval(<<'.,.,', 'gherkin.y', 42)
 
 module_eval(<<'.,.,', 'gherkin.y', 46)
   def _reduce_14(val, _values, result)
-     result = AST::Feature.new(val[1]); result.pos(filename, lineno) 
+     result = AST::Describe.new(val[1]); result.pos(filename, lineno) 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'gherkin.y', 47)
   def _reduce_15(val, _values, result)
-     result = AST::Feature.new(val[2]); result.pos(filename, lineno) 
+     result = AST::Describe.new(val[2]); result.pos(filename, lineno) 
     result
   end
 .,.,
@@ -315,7 +315,7 @@ module_eval(<<'.,.,', 'gherkin.y', 57)
 
 module_eval(<<'.,.,', 'gherkin.y', 61)
   def _reduce_19(val, _values, result)
-     result = AST::Background.new; result.pos(filename, lineno) 
+     result = AST::GroupRule.new; result.pos(filename, lineno) 
     result
   end
 .,.,
@@ -376,14 +376,14 @@ module_eval(<<'.,.,', 'gherkin.y', 80)
 
 module_eval(<<'.,.,', 'gherkin.y', 85)
   def _reduce_32(val, _values, result)
-     result = AST::Scenario.new(val[1], val[3]); result.pos(filename, lineno - 1) 
+     result = AST::Rule.new(val[1], val[3]); result.pos(filename, lineno - 1) 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'gherkin.y', 88)
   def _reduce_33(val, _values, result)
-     result = AST::Scenario.new(val[3], val[5], val[0]); result.pos(filename, lineno - 2) 
+     result = AST::Rule.new(val[3], val[5], val[0]); result.pos(filename, lineno - 2) 
     result
   end
 .,.,

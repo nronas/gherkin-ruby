@@ -14,10 +14,9 @@ rule
   \n                                    { [:NEWLINE, text] }
 
   # Keywords
-  Definition:                           { [:FEATURE, text[0..-2]] }
-  Common:                               { [:BACKGROUND, text[0..-2]] }
-  Rule:                                 { [:SCENARIO, text[0..-2]] }
-  GroupRule:                            { [:SCENARIO, text[0..-2]] }
+  Describe:                             { [:DESCRIBE, text[0..-2]] }
+  GroupRule:                            { [:GROUPRULE, text[0..-2]] }
+  Rule:                                 { [:RULE, text[0..-2]] }
 
   # Tags
   @(\w|-)+                              { [:TAG, text[1..-1]] }

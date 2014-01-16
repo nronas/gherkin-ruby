@@ -68,17 +68,14 @@ class GherkinRuby::Parser < Racc::Parser
       when (text = @ss.scan(/\n/))
          action { [:NEWLINE, text] }
 
-      when (text = @ss.scan(/Definition:/))
-         action { [:FEATURE, text[0..-2]] }
-
-      when (text = @ss.scan(/Common:/))
-         action { [:BACKGROUND, text[0..-2]] }
-
-      when (text = @ss.scan(/Rule:/))
-         action { [:SCENARIO, text[0..-2]] }
+      when (text = @ss.scan(/Describe:/))
+         action { [:DESCRIBE, text[0..-2]] }
 
       when (text = @ss.scan(/GroupRule:/))
-         action { [:SCENARIO, text[0..-2]] }
+         action { [:GROUPRULE, text[0..-2]] }
+
+      when (text = @ss.scan(/Rule:/))
+         action { [:RULE, text[0..-2]] }
 
       when (text = @ss.scan(/@(\w|-)+/))
          action { [:TAG, text[1..-1]] }

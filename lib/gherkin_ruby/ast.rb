@@ -13,26 +13,26 @@ module GherkinRuby
       end
     end
 
-    class Feature < Node
-      attr_reader :name, :background, :scenarios, :tags
-      attr_writer :background, :scenarios, :tags
+    class Describe < Node
+      attr_reader :name, :group_rule, :rules, :tags
+      attr_writer :group_rule, :rules, :tags
       attr_accessor :description
 
       include Enumerable
 
-      def initialize(name, scenarios=[], tags=[], background=nil)
+      def initialize(name, rules=[], tags=[], group_rule=nil)
         @name       = name
-        @background = background
+        @group_rule = group_rule
         @tags       = tags
-        @scenarios  = scenarios
+        @rules  = rules
       end
 
       def each
-        @scenarios.each
+        @rules.each
       end
     end
 
-    class Background < Node
+    class GroupRule < Node
       attr_reader :steps
       attr_writer :steps
 
@@ -51,7 +51,7 @@ module GherkinRuby
       end
     end
 
-    class Scenario < Node
+    class Rule < Node
       attr_reader :name, :steps, :tags
 
       include Enumerable
